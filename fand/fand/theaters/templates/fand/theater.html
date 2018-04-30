@@ -1,0 +1,32 @@
+{% extends "fand/base.html" %}
+
+{% block content %}
+
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>{{t.theaterName}}</h1>
+      <h3>About this location</h3>
+      <p><strong>Address: </strong><br><a href='https://www.google.com/maps/search/{{t.addressOne}} {{t.city}}'>{{t.addressOne}}<br> {{t.city}}, NC {{t.zip}}</a></p>
+      <p><strong>Age Policy:</strong> {{t.agePolicy}}</p>
+      <p><strong>Phone:</strong> {{t.phone}}</p>
+      <h3>Movies Playing</h3>
+
+      <ul>
+      {% for key, value in consolidated.items %}
+        <li>
+          <h5><strong><a href='{% url "theaters:movies-detail" key.movid %}'>{{key}}</a></strong></h5>
+          Showtimes:
+        {% for st in value %}
+        <a href='{{st.ticketingUrl}}'>{{st.time}}</a>
+        {% endfor %}
+      </li><br>
+      {% endfor %}
+      </ul>
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

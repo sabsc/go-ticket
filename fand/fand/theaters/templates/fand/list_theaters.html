@@ -1,0 +1,88 @@
+{% extends "fand/base.html" %}
+{% load static %}
+<link href="{% static "fand/css/boot.css" %}" rel="stylesheet">
+
+{% block content %}
+<br>
+<div class="row">
+  <div class="col-md-12">
+  <h1>Theaters</h1>
+  <h2>Overview</h2>
+  <h3>Map</h3>
+  <p>Wondering where you could catch a show? We've got you covered.</p>
+  <div id="map"></div><br>
+  <h3>Runtimes</h3>
+  <p>Got a short attention span (or kids with short attention spans)? Look at what movies have the shortest runtimes. Or if you think it'll get you the most bang for your buck, look for the longest showtime.</p>
+  <div id="movie-bar"></div><br>
+  <h2>Locations by City</h2>
+  <p>Click on a theater to see what's showing there.</p>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Durham</h3>
+          <ul>
+          {% for t in theaters %}
+            {% if t.city == "Durham" %}
+              <li><h5><a href='{% url "theaters:theaters-detail" t.id %}'>{{t.theaterName}}</a></h5>
+              <p>{{t.addressOne}}<br> {{t.city}}, NC {{t.zip}}<br>
+              <a href='https://www.google.com/maps/search/{{t.addressOne}} {{t.city}}'>Route</a></p>
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h3>Chapel Hill</h3>
+          <ul>
+          {% for t in theaters %}
+            {% if t.city == "Chapel Hill" %}
+              <li><h5><a href='{% url "theaters:theaters-detail" t.id %}'>{{t.theaterName}}</a></h5>
+              <p>{{t.addressOne}}<br> {{t.city}}, NC {{t.zip}}<br>
+              <a href='https://www.google.com/maps/search/{{t.addressOne}} {{t.city}}'>Route</a></p>
+            </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+      </div><br>
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Raleigh</h3>
+          <ul>
+          {% for t in theaters %}
+            {% if t.city == "Raleigh" %}
+              <li><h5><a href='{% url "theaters:theaters-detail" t.id %}'>{{t.theaterName}}</a></h5>
+              <p>{{t.addressOne}}<br> {{t.city}}, NC {{t.zip}}<br>
+              <a href='https://www.google.com/maps/search/{{t.addressOne}} {{t.city}}'>Route</a></p>
+              </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <h3>Other Triangle Locations</h3>
+          <ul>
+          {% for t in theaters %}
+            {% if t.city != "Raleigh" and t.city != "Chapel Hill" and t.city != "Durham" %}
+              <li><h5><a href='{% url "theaters:theaters-detail" t.id %}'>{{t.theaterName}}</a></h5>
+              <p>{{t.addressOne}}<br> {{t.city}}, NC {{t.zip}}<br>
+              <a href='https://www.google.com/maps/search/{{t.addressOne}} {{t.city}}'>Route</a></p>
+            </li>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block script %}
+
+<script async defer
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDhBnuGExtxxL0XSsIs7PTH8w624cX25ek&callback=initMap">
+</script>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "fand/base.html" %}
+{% load static %}
+<link href="{% static "fand/css/boot.css" %}" rel="stylesheet">
+
+{% block header %}
+<!-- header design credit: https://github.com/BlackrockDigital/startbootstrap-one-page-wonder -->
+<header class="masthead text-center text-white">
+  <div class="masthead-content">
+    <div class="container">
+      <h1 class="masthead-heading">Get a movie on!</h1>
+      <h2 class="masthead-subheading">We'll help you find one.</h2>
+      <a href="{% url "theaters:movies-list" %}" class="btn btn-primary btn-xl rounded-pill mt-5">See a movie</a>
+    </div>
+  </div>
+  <div class="bg-circle-1 bg-circle"></div>
+  <div class="bg-circle-2 bg-circle"></div>
+  <div class="bg-circle-3 bg-circle"></div>
+  <div class="bg-circle-4 bg-circle"></div>
+</header>
+{% endblock %}
+
+{% block content %}
+<!-- home text here -->
+{% endblock %}

@@ -1,0 +1,76 @@
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GoTicket</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static "fand/css/boot.css" %}" rel="stylesheet">
+
+    <!-- {% block css %}
+        {{ block.super }}
+        <link rel ="stylesheet" href="{% static "winners/css/map.css" %}">
+    {% endblock %} -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    {% block body %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <!-- Navbar content -->
+      <a class="navbar-brand navbar-brand-pac" href="{% url "theaters:home" %}">GoTicket</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="{% url "theaters:home" %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-item nav-link" href="{% url "theaters:theaters-list" %}">Theaters</a>
+          <a class="nav-item nav-link" href="{% url "theaters:movies-list" %}">Movies</a>
+
+      </div>
+        <span class="navbar-text ml-auto">
+          Featuring NC Triangle Locations
+        </span>
+      </div>
+    </nav>
+    {% block header %}
+    {% endblock %}
+      <div class="container">
+
+
+          {% block breadcrumb_nav %}
+              <!-- <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                      {% block breadcrumbs %}
+                      {% endblock %}
+
+                  </ol>
+              </nav> -->
+          {% endblock %}
+          {% block content %}
+          {% endblock %}
+      </div>
+    {% endblock %}
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://unpkg.com/topojson@3"></script>
+    <script src="{% static "fand/js/home.js" %}"></script>
+    <script src="{% static "fand/js/bar.js" %}"></script>
+
+    <script src="{% static "fand/js/movie-map.js" %}"></script>
+
+
+    {% block script %}{% endblock %}
+  </body>
+</html>

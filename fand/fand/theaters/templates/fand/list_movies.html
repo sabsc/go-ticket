@@ -1,0 +1,57 @@
+{% extends "fand/base.html" %}
+{% load static %}
+<link href="{% static "fand/css/boot.css" %}" rel="stylesheet">
+
+{% block content %}
+<br>
+
+<div class="row">
+  <div class="col-md-12">
+    <h1>Movies</h1>
+    <p>Here's all of the movies. Interested in one? Click to view more information and showtimes. </p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Featured Movie</h2>
+    <h4>Sgt. Stubby: An American Hero</h4>
+    <div class="row">
+      <div class="col-md-3">
+        <img src="http://images.fandango.com/ImageRenderer/0/0/redesign/static/img/default_poster.png/0/images/MasterRepository/fandango/209946/SgtStubby2018.jpg" style="height:300px"/>
+      </div>
+      <div class="col-md-9">
+        <h4><strong>Synposis</strong></h4>
+        <p>"With World War I looming, a young Army Pvt. Robert Conroy is adopted by a stray, stump-tailed terrier. Conroy names his new friend Stubby and gives him a home, a family, and a chance to embark on the adventure that would define a century. The two quickly find themselves in the trenches of France and on the path to history. French soldier Gaston Baptiste befriends the duo and accompanies them along their epic journey through harsh conditions and incredible acts of courage."
+        – Google Reviews</p>
+        <h4><strong>From the Makers</strong></h4>
+        <p>SGT. STUBBY: AN AMERICAN HERO is an upcoming computer-animated feature film based on the incredible true story of America’s most decorated dog. After being rescued off the streets by a young Soldier on the eve of America’s entry in World War I, Stubby is given a home, a family, and the chance to embark on the adventure that would define a century.</p>
+        <p>Visit the Sgt. Stubby <a href="http://www.stubbymovie.com/">website</a>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+  <h2>All Movies</h2>
+  {% for m in movies %}
+    {% if forloop.first %}<div class="row">{% endif %}
+    <div class="col-md-4">
+      <div class="boxes-cols">
+        <h4><a href='{% url "theaters:movies-detail" m.movid %}'>{{m.title}}</a></h4>
+        <img src='http:{{ m.poster }}' style='height:300px; width=100%'/>
+        <br><br>
+        <div>
+        <span class="btn btn-primary btn-xs rounded-pill">{{m.genres}}</span>
+        <span class="btn btn-primary btn-xs rounded-pill">{{m.rating}}</span>
+        </div>
+      </div>
+    </div>
+    {% if forloop.counter|divisibleby:3 %}</div><br><div class="row">{% endif %}
+    {% if forloop.last %}</div>{% endif %}
+  {% endfor %}
+  </div>
+</div>
+
+{% endblock %}
